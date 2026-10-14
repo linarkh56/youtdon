@@ -34,11 +34,7 @@
     "directories": {
       "output": "release"
     },
-    "files": [
-      "dist/**/*",
-      "src/renderer/**/*",
-      "package.json"
-    ],
+    "files": ["dist/**/*","src/renderer/**/*","node_modules/sql.js/dist/sql-wasm.wasm","package.json"],
     "win": {
       "target": "nsis"
     }
