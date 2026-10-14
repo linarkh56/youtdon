@@ -1,6 +1,7 @@
 {
   "name": "youtdon",
   "version": "0.1.0",
+  "author": "Youtdon",
   "description": "YouTube Donation Player for streamers",
   "main": "dist/main/main.js",
   "type": "module",
@@ -36,6 +37,7 @@
     "directories": {
       "output": "release"
     },
+    "icon": "build/icon.png",
     "files": [
       "dist/**/*",
       "src/renderer/**/*",
