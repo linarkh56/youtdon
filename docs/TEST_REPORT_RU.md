@@ -1,6 +1,6 @@
 # Отчёт фактических проверок
 
-Последний проверенный commit: `8022661`. Installer собран из этого production-кода; SHA-256 `B538E3E3843A935E35DC294F03DD4E643CEAD7F05E4E0556CE3D8E18594DA737`.
+Последний проверенный commit: `83f07ad`. Installer собран из этого production-кода; SHA-256 `4E688532440D1F6EBCACB1FDBE4B392B8AA2F87564C903AEE0009FBC16256CCA`.
 
 Пройдено:
 
@@ -14,7 +14,7 @@
 - smoke-запуск `release/win-unpacked/YouTube Donation Player.exe` без Node/npm: процесс жил 6 секунд
 - silent install NSIS в изолированный `%TEMP%` каталог: exit code 0; установленный exe жил 6 секунд; silent uninstall exit code 0 и удалил exe
 
-Автоматически проверены parser, pricing, queue transitions, queue clear с сохранением истории, refund transition, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, restart recovery playing-заказа, auth, DTO validation, malformed restore payload, history, authenticated version metadata, safe error journal, playback control и реальный WebSocket overlay broadcast.
+Автоматически проверены parser, pricing, queue transitions, queue clear с сохранением истории, refund transition, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, restart recovery playing-заказа, auth, DTO validation, malformed restore payload, history, authenticated version metadata, safe error journal, playback control, navigation policy configuration и реальный WebSocket overlay broadcast.
 
 Не выполнено в этой среде:
 
