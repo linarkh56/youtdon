@@ -6,7 +6,7 @@ const moderationSchema=z.object({status:z.enum(['playing','completed','rejected'
 const controlSchema=z.object({action:z.enum(['pause','resume','skip','stop'])}).strict();
 const playbackErrorSchema=z.object({reason:z.string().min(1).max(500)}).strict();
 export function startServer(queue:QueueEngine,mock:MockAdapter,token:string,port=0,staticDir?:string,playback?:PlaybackController,store?:{exportBytes():Uint8Array;restore(bytes:Uint8Array):Promise<void>},player?:QueuePlayer,logger?:Logger):Promise<{server:Server;port:number}>{
- const app=express(); const overlaySessions=new Set<string>(); app.use((q,r,next)=>{if(q.path==='/overlay.html'){const session=randomBytes(24).toString('hex');overlaySessions.add(session);setTimeout(()=>overlaySessions.delete(session),3600_000).unref();r.setHeader('Set-Cookie',`youtdon_overlay=${session}; HttpOnly; SameSite=Strict; Path=/overlay; Max-Age=3600`)}next()}); app.use(express.json({limit:'40mb'})); if(staticDir)app.use(express.static(staticDir));
+ const app=express(); const overlaySessions=new Set<string>(); app.use((q,r,next)=>{if(q.path==='/overlay.html'){const session=randomBytes(24).toString('hex');overlaySessions.add(session);setTimeout(()=>overlaySessions.delete(session),3600_000).unref();r.setHeader('Set-Cookie',`youtdon_overlay=${session}; HttpOnly; SameSite=Strict; Path=/; Max-Age=3600`)}next()}); app.use(express.json({limit:'40mb'})); if(staticDir)app.use(express.static(staticDir));
  const auth=(q:any,r:any)=>{if(q.header('x-youtdon-token')!==token){logger?.warn('Unauthorized API request');r.sendStatus(401);return false;}return true;};
  app.get('/api/logs',(q,r)=>{if(auth(q,r))r.json(logger?.list()??[])});
  app.get('/api/health',(_q,r)=>r.json({ok:true}));
