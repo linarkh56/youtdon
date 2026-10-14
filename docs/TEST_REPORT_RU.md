@@ -1,12 +1,12 @@
 # Отчёт фактических проверок
 
-Последний проверенный commit: `ddc8836`. Installer собран из этого production-кода; SHA-256 `30A004FFF022A7D6C49EDFF4C555BDB7404AEBB93E4A03F04DF8D5F114029588`.
+Последний проверенный commit: `8938695`. Installer собран из этого production-кода; SHA-256 `01DA37394F0CEDC8CE7A3A87E9780DEA42D9B2C7A22992710C1812A0D6031F78`.
 
 Пройдено:
 
 - `npm ci`
 - `npm run typecheck`
-- `npm test`: 22 теста в 8 файлах
+- `npm test`: 23 теста в 8 файлах
 - `npm run build`
 - `npm audit --omit=dev --audit-level=high`: 0 high/critical vulnerabilities
 - syntax-check `src/renderer/renderer.js` и inline script `src/renderer/player.html`
@@ -14,7 +14,7 @@
 - smoke-запуск `release/win-unpacked/YouTube Donation Player.exe` без Node/npm: процесс жил 6 секунд
 - silent install NSIS в изолированный `%TEMP%` каталог: exit code 0; установленный exe жил 6 секунд; silent uninstall exit code 0 и удалил exe
 
-Автоматически проверены parser, pricing, queue transitions, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, auth, DTO validation, malformed restore payload, history, playback control и реальный WebSocket overlay broadcast.
+Автоматически проверены parser, pricing, queue transitions, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, auth, DTO validation, malformed restore payload, history, authenticated version metadata, playback control и реальный WebSocket overlay broadcast.
 
 Не выполнено в этой среде:
 
