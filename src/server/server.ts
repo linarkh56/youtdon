@@ -4,6 +4,7 @@ export function startServer(queue:QueueEngine,mock:MockAdapter,token:string,port
  const auth=(q:any,r:any)=>{if(q.header('x-youtdon-token')!==token){r.sendStatus(401);return false;}return true;};
  app.get('/api/health',(_q,r)=>r.json({ok:true}));
  app.get('/api/orders',(q,r)=>{if(auth(q,r))r.json(queue.list());});
+ app.get('/api/history',(q,r)=>{if(auth(q,r))r.json(queue.list().filter(o=>['completed','rejected','interrupted','refunded'].includes(o.status)));});
  app.get('/api/config',(q,r)=>{if(auth(q,r))r.json(queue.getPricing());});
  app.post('/api/config',(q,r)=>{if(!auth(q,r))return;try{queue.updatePricing(q.body);r.json(queue.getPricing());}catch(e){r.status(400).json({error:e instanceof Error?e.message:'Ошибка'});}});
  app.get('/api/playback',(_q,r)=>r.json(playback?.snapshot()??{orderId:null,videoId:null,status:'idle',remainingSeconds:0}));
