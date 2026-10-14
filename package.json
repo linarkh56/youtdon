@@ -10,7 +10,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
-    "dist": "npm run build && electron-builder --win --dir"
+    "dist": "npm run build && electron-builder --win --dir",
+    "dist:installer": "npm run build && electron-builder --win nsis"
   },
   "dependencies": {
     "express": "^4.21.2",
