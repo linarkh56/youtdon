@@ -36,7 +36,8 @@
     },
     "files": ["dist/**/*","src/renderer/**/*","node_modules/sql.js/dist/sql-wasm.wasm","package.json"],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "signAndEditExecutable": false
     }
   }
 }
