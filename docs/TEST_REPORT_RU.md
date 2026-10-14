@@ -1,6 +1,6 @@
 # Отчёт фактических проверок
 
-Последний проверенный commit: `79d43f2`. Installer собран из этого production-кода; SHA-256 `79DD2B44E8514879F2E6E201A5CBCA153E6DCA6B7F483DA9AA1F886F57F49AFD`.
+Последний проверенный commit: `df1316c`. Installer собран из этого production-кода; SHA-256 `7C61A09B2117547E6BA4959D8A2F630AE23F57A20F22910306B44485F494B469`.
 
 Пройдено:
 
