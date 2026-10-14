@@ -1,12 +1,12 @@
 # Отчёт фактических проверок
 
-Последний проверенный commit: `307cdac`. Installer собран из этого production-кода; SHA-256 `4914E880B97B5B4BC1088974108001691D24C5226E1417AA3C4850B4F509D636`.
+Последний проверенный commit: `e603ad4`. Installer собран из production-кода `307cdac`; SHA-256 `4914E880B97B5B4BC1088974108001691D24C5226E1417AA3C4850B4F509D636`.
 
 Пройдено:
 
 - `npm ci`
 - `npm run typecheck`
-- `npm test`: 29 тестов в 8 файлах
+- `npm test`: 30 тестов в 8 файлах
 - `npm run build`
 - `npm audit --omit=dev --audit-level=high`: 0 high/critical vulnerabilities
 - syntax-check `src/renderer/renderer.js` и inline script `src/renderer/player.html`
@@ -15,7 +15,7 @@
 - silent install NSIS в изолированный `%TEMP%` каталог: exit code 0; установленный exe жил 6 секунд; silent uninstall exit code 0 и удалил exe
 - после установленного запуска созданы `%APPDATA%\\youtdon\\youtdon.sqlite` (24 KB) и `%APPDATA%\\youtdon\\youtdon.log` (177 B)
 
-Автоматически проверены parser с отклонением playlist/timing параметров, pricing, queue transitions, queue clear с сохранением истории, refund transition, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, конкурентная дедупликация provider event, backup/restore, restart recovery playing-заказа, auth, DTO validation, malformed restore payload, history, authenticated version metadata, safe error journal без secrets, playback control, navigation policy configuration и реальный WebSocket overlay broadcast.
+Автоматически проверены parser с отклонением playlist/timing параметров, pricing, queue transitions, queue clear с сохранением истории, refund transition, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, конкурентная дедупликация provider event, backup/restore, restart recovery playing-заказа, auth, DTO validation, malformed restore payload, diagnostics export без secrets, history, authenticated version metadata, safe error journal без secrets, playback control, navigation policy configuration и реальный WebSocket overlay broadcast.
 
 Не выполнено в этой среде:
 
