@@ -1,0 +1,2 @@
+export type Pricing={kopecksPerMinute:number;minKopecks:number;maxSeconds:number;maxKopecks:number;maxQueueSeconds:number;maxQueueItems:number};
+export function secondsForAmount(amountKopecks:number,p:Pricing):number{if(!Number.isSafeInteger(amountKopecks)||amountKopecks<=0)throw new Error('Сумма должна быть положительным числом копеек');if(amountKopecks<p.minKopecks)throw new Error('Сумма меньше минимальной');if(amountKopecks>p.maxKopecks)throw new Error('Сумма превышает максимум');return Math.min(Math.floor(amountKopecks*60/p.kopecksPerMinute),p.maxSeconds);}

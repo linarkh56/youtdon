@@ -1,0 +1,1 @@
+import {describe,expect,it} from 'vitest';import {secondsForAmount} from './pricing.js';const p={kopecksPerMinute:10000,minKopecks:1000,maxSeconds:600,maxKopecks:100000,maxQueueSeconds:3600,maxQueueItems:50};describe('pricing',()=>{it('calculates',()=>expect(secondsForAmount(5000,p)).toBe(30));it('rejects minimum',()=>expect(()=>secondsForAmount(500,p)).toThrow())});
