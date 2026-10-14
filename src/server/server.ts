@@ -8,6 +8,7 @@ export function startServer(queue:QueueEngine,mock:MockAdapter,token:string,port
  const app=express(); const overlaySessions=new Set<string>(); app.use((q,r,next)=>{if(q.path==='/overlay.html'){const session=randomBytes(24).toString('hex');overlaySessions.add(session);setTimeout(()=>overlaySessions.delete(session),3600_000).unref();r.setHeader('Set-Cookie',`youtdon_overlay=${session}; HttpOnly; SameSite=Strict; Path=/overlay; Max-Age=3600`)}next()}); app.use(express.json({limit:'40mb'})); if(staticDir)app.use(express.static(staticDir));
  const auth=(q:any,r:any)=>{if(q.header('x-youtdon-token')!==token){r.sendStatus(401);return false;}return true;};
  app.get('/api/health',(_q,r)=>r.json({ok:true}));
+ app.get('/api/version',(q,r)=>{if(auth(q,r))r.json({product:'YouTube Donation Player',version:'0.1.0',updateStatus:'manual-check-required'});});
  app.get('/api/orders',(q,r)=>{if(auth(q,r))r.json(queue.list());});
  app.get('/api/history',(q,r)=>{if(auth(q,r))r.json(queue.list().filter(o=>['completed','rejected','interrupted','refunded'].includes(o.status)));});
  app.get('/api/config',(q,r)=>{if(auth(q,r))r.json(queue.getPricing());});
