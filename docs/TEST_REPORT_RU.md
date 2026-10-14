@@ -1,12 +1,12 @@
 # Отчёт фактических проверок
 
-Последний проверенный commit: `762deec`. Installer собран из этого production-кода; SHA-256 `69D43BB42BFA04F16DF0F07EBF3ABCE8B30DE59540E85A274B1C447268E17ADC`.
+Последний проверенный commit: `1a0dd63`. Installer собран из этого production-кода; SHA-256 `27FBE5871F436C59D849DCA5D844DDE972F9C4776013F71D174E188F7BA001D1`.
 
 Пройдено:
 
 - `npm ci`
 - `npm run typecheck`
-- `npm test`: 24 теста в 8 файлах
+- `npm test`: 25 тестов в 8 файлах
 - `npm run build`
 - `npm audit --omit=dev --audit-level=high`: 0 high/critical vulnerabilities
 - syntax-check `src/renderer/renderer.js` и inline script `src/renderer/player.html`
@@ -14,7 +14,7 @@
 - smoke-запуск `release/win-unpacked/YouTube Donation Player.exe` без Node/npm: процесс жил 6 секунд
 - silent install NSIS в изолированный `%TEMP%` каталог: exit code 0; установленный exe жил 6 секунд; silent uninstall exit code 0 и удалил exe
 
-Автоматически проверены parser, pricing, queue transitions, queue clear с сохранением истории, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, auth, DTO validation, malformed restore payload, history, authenticated version metadata, playback control и реальный WebSocket overlay broadcast.
+Автоматически проверены parser, pricing, queue transitions, queue clear с сохранением истории, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, auth, DTO validation, malformed restore payload, history, authenticated version metadata, safe error journal, playback control и реальный WebSocket overlay broadcast.
 
 Не выполнено в этой среде:
 
