@@ -9,11 +9,12 @@ import {startServer} from '../server/server.js';
 import {PlaybackController} from '../player/controller.js';
 import {QueuePlayer} from '../player/queue-player.js';
 import {Logger} from '../observability/logger.js';
+import {isAllowedNavigation} from './navigation.js';
 
 let server:import('node:http').Server|undefined;
 let queuePlayer:QueuePlayer|undefined;
 let store:Store|undefined;
-function lockNavigation(window:BrowserWindow,origin:string){const allowedOrigin=new URL(origin).origin;const allowed=(url:string)=>{try{return new URL(url).origin===allowedOrigin}catch{return false}};window.webContents.on('will-navigate',(event,url)=>{if(!allowed(url))event.preventDefault()});window.webContents.on('will-redirect',(event,url)=>{if(!allowed(url))event.preventDefault()});window.webContents.setWindowOpenHandler(()=>({action:'deny'}));}
+function lockNavigation(window:BrowserWindow,origin:string){window.webContents.on('will-navigate',(event,url)=>{if(!isAllowedNavigation(url,origin))event.preventDefault()});window.webContents.on('will-redirect',(event,url)=>{if(!isAllowedNavigation(url,origin))event.preventDefault()});window.webContents.setWindowOpenHandler(()=>({action:'deny'}));}
 
 async function boot(){
   const dir=app.getPath('userData');

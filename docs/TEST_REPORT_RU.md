@@ -6,7 +6,7 @@
 
 - `npm ci`
 - `npm run typecheck`
-- `npm test`: 31 тест в 9 файлах
+- `npm test`: 35 тестов в 10 файлах
 - `npm run build`
 - `npm audit --omit=dev --audit-level=high`: 0 high/critical vulnerabilities
 - syntax-check `src/renderer/renderer.js` и inline script `src/renderer/player.html`
@@ -15,7 +15,7 @@
 - silent install NSIS в изолированный `%TEMP%` каталог: exit code 0; установленный exe жил 6 секунд; silent uninstall exit code 0 и удалил exe
 - после установленного запуска созданы `%APPDATA%\\youtdon\\youtdon.sqlite` (24 KB) и `%APPDATA%\\youtdon\\youtdon.log` (177 B)
 
-Автоматически проверены parser с отклонением playlist/timing параметров, pricing, queue transitions, queue clear с сохранением истории, refund transition, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, конкурентная дедупликация provider event, backup/restore, restart recovery playing-заказа, auth, DTO validation, malformed restore payload, diagnostics export без secrets, history, authenticated version metadata, safe error journal без secrets, playback control, navigation policy configuration, область cookie для OBS WebSocket и реальный WebSocket overlay broadcast.
+Автоматически проверены parser с отклонением playlist/timing параметров, pricing, queue transitions, queue clear с сохранением истории, refund transition, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, конкурентная дедупликация provider event, backup/restore, restart recovery playing-заказа, auth, DTO validation, malformed restore payload, diagnostics export без secrets, history, authenticated version metadata, safe error journal без secrets, playback control, exact navigation origin policy, область cookie для OBS WebSocket и реальный WebSocket overlay broadcast.
 
 Не выполнено в этой среде:
 
