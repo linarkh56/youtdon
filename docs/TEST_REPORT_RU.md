@@ -25,3 +25,5 @@
 - подпись installer сертификатом.
 
 Полный `npm audit` содержит 8 moderate dev-toolchain findings через electron-builder; production-зависимости проходят high-level audit.
+
+Ограничение persistence: используется `sql.js` WASM с атомарными транзакциями и экспортом файла; SQLite WAL и многопроцессная запись не заявляются.
