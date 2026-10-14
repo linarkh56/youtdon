@@ -24,10 +24,11 @@
     "@types/node": "^22.10.5",
     "@types/sql.js": "^1.4.11",
     "@types/ws": "^8.18.2",
-    "electron": "^33.2.1",
-    "electron-builder": "^25.1.8",
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vite": "^8.3.4",
+    "vitest": "^5.0.4"
   },
   "build": {
     "appId": "com.youtdon.desktop",
@@ -35,7 +36,12 @@
     "directories": {
       "output": "release"
     },
-    "files": ["dist/**/*","src/renderer/**/*","node_modules/sql.js/dist/sql-wasm.wasm","package.json"],
+    "files": [
+      "dist/**/*",
+      "src/renderer/**/*",
+      "node_modules/sql.js/dist/sql-wasm.wasm",
+      "package.json"
+    ],
     "win": {
       "target": "nsis",
       "signAndEditExecutable": false
