@@ -6,14 +6,14 @@
 
 - `npm ci`
 - `npm run typecheck`
-- `npm test`: 21 тест в 8 файлах
+- `npm test`: 22 теста в 8 файлах
 - `npm run build`
 - `npm audit --omit=dev --audit-level=high`: 0 high/critical vulnerabilities
 - syntax-check `src/renderer/renderer.js` и inline script `src/renderer/player.html`
 - `npm run dist:installer` на Windows
 - smoke-запуск `release/win-unpacked/YouTube Donation Player.exe` без Node/npm: процесс жил 6 секунд
 
-Автоматически проверены parser, pricing, queue transitions, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, auth, DTO validation, malformed restore payload и history.
+Автоматически проверены parser, pricing, queue transitions, playback timer, retry после ошибки видео, SQLite migration v1/v2, транзакции, уникальность платежа, backup/restore, auth, DTO validation, malformed restore payload, history, playback control и реальный WebSocket overlay broadcast.
 
 Не выполнено в этой среде:
 
