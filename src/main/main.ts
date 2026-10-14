@@ -13,7 +13,7 @@ import {Logger} from '../observability/logger.js';
 let server:import('node:http').Server|undefined;
 let queuePlayer:QueuePlayer|undefined;
 let store:Store|undefined;
-function lockNavigation(window:BrowserWindow){window.webContents.on('will-navigate',(event,url)=>{if(!url.startsWith('http://127.0.0.1:'))event.preventDefault()});window.webContents.on('will-redirect',(event,url)=>{if(!url.startsWith('http://127.0.0.1:'))event.preventDefault()});window.webContents.setWindowOpenHandler(()=>({action:'deny'}));}
+function lockNavigation(window:BrowserWindow,origin:string){const allowedOrigin=new URL(origin).origin;const allowed=(url:string)=>{try{return new URL(url).origin===allowedOrigin}catch{return false}};window.webContents.on('will-navigate',(event,url)=>{if(!allowed(url))event.preventDefault()});window.webContents.on('will-redirect',(event,url)=>{if(!allowed(url))event.preventDefault()});window.webContents.setWindowOpenHandler(()=>({action:'deny'}));}
 
 async function boot(){
   const dir=app.getPath('userData');
@@ -28,8 +28,9 @@ async function boot(){
   const token=randomBytes(32).toString('hex'); ipcMain.handle('youtdon-token',()=>token);
   const started=await startServer(queue,mock,token,0,join(app.getAppPath(),'src','renderer'),playback,store,queuePlayer,logger); server=started.server;
   const prefs={preload:join(app.getAppPath(),'dist','preload','preload.js'),contextIsolation:true,nodeIntegration:false,sandbox:true};
-  const main=new BrowserWindow({width:1200,height:800,webPreferences:prefs}); lockNavigation(main); await main.loadURL(`http://127.0.0.1:${started.port}/index.html`);
-  const player=new BrowserWindow({width:960,height:540,show:true,webPreferences:prefs}); lockNavigation(player); await player.loadURL(`http://127.0.0.1:${started.port}/player.html`);
+  const origin=`http://127.0.0.1:${started.port}`;
+  const main=new BrowserWindow({width:1200,height:800,webPreferences:prefs}); lockNavigation(main,origin); await main.loadURL(`${origin}/index.html`);
+  const player=new BrowserWindow({width:960,height:540,show:true,webPreferences:prefs}); lockNavigation(player,origin); await player.loadURL(`${origin}/player.html`);
 }
 app.whenReady().then(boot).catch(e=>{console.error(e);app.quit();});
 app.on('window-all-closed',()=>{queuePlayer?.stop();server?.close();store?.close();if(process.platform!=='darwin')app.quit();});
