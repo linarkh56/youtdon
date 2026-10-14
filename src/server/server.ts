@@ -3,6 +3,7 @@ const pricingSchema=z.object({kopecksPerMinute:z.number().int().positive(),minKo
 const mockSchema=z.object({amountKopecks:z.number().int().positive(),message:z.string().min(1).max(4000),currency:z.literal('RUB').optional(),providerDonationId:z.string().min(1).max(200).optional()}).strict();
 const moderationSchema=z.object({status:z.enum(['playing','completed','rejected','interrupted']),reason:z.string().max(500).optional()}).strict();
 const controlSchema=z.object({action:z.enum(['pause','resume','skip','stop'])}).strict();
+const playbackErrorSchema=z.object({reason:z.string().min(1).max(500)}).strict();
 export function startServer(queue:QueueEngine,mock:MockAdapter,token:string,port=0,staticDir?:string,playback?:PlaybackController,store?:{exportBytes():Uint8Array;restore(bytes:Uint8Array):Promise<void>},player?:QueuePlayer):Promise<{server:Server;port:number}>{
  const app=express(); app.use(express.json({limit:'40mb'})); if(staticDir)app.use(express.static(staticDir));
  const auth=(q:any,r:any)=>{if(q.header('x-youtdon-token')!==token){r.sendStatus(401);return false;}return true;};
@@ -12,6 +13,7 @@ export function startServer(queue:QueueEngine,mock:MockAdapter,token:string,port
  app.get('/api/config',(q,r)=>{if(auth(q,r))r.json(queue.getPricing());});
  app.post('/api/config',(q,r)=>{if(!auth(q,r))return;try{const body=pricingSchema.parse(q.body);queue.updatePricing(body);r.json(queue.getPricing());}catch(e){r.status(400).json({error:e instanceof Error?e.message:'Ошибка'});}});
  app.post('/api/playback/control',(q,r)=>{if(!auth(q,r))return;try{const {action}=controlSchema.parse(q.body);if(!player)throw new Error('Управление плеером недоступно');if(action==='pause')player.pause();if(action==='resume')player.resume();if(action==='skip'||action==='stop')player.skip(action==='stop'?'Остановлено модератором':'Пропущено модератором');r.json(playback?.snapshot()??{status:'idle'});}catch(e){r.status(400).json({error:e instanceof Error?e.message:'Ошибка управления'});}});
+ app.post('/api/playback/error',(q,r)=>{if(!auth(q,r))return;try{const {reason}=playbackErrorSchema.parse(q.body);if(!player)throw new Error('Управление плеером недоступно');player.fail(reason);r.json(playback?.snapshot()??{status:'idle'});}catch(e){r.status(400).json({error:e instanceof Error?e.message:'Ошибка воспроизведения'});}});
  app.get('/api/playback',(_q,r)=>r.json(playback?.snapshot()??{orderId:null,videoId:null,status:'idle',remainingSeconds:0}));
  app.get('/api/diagnostics',(q,r)=>{if(!auth(q,r))return;r.json({app:'youtdon',version:'0.1.0',mode:'mock',loopbackOnly:true,providers:{donationalerts:'unconfigured',donatepay:'unconfigured'},orders:queue.list().length});});
  app.get('/api/backup',(q,r)=>{if(!auth(q,r)||!store)return;r.type('application/octet-stream').set('Content-Disposition','attachment; filename="youtdon-backup.sqlite"').send(Buffer.from(store.exportBytes()));});
