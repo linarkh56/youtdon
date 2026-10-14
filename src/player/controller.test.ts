@@ -1,0 +1,3 @@
+import {describe,expect,it,vi} from 'vitest'; import {PlaybackController} from './controller.js';
+const order:any={id:'o1',videoId:'dQw4w9WgXcQ',seconds:60};
+describe('backend playback timer',()=>{it('never becomes negative',()=>{vi.useFakeTimers();const p=new PlaybackController();p.start(order);vi.advanceTimersByTime(70000);expect(p.snapshot().remainingSeconds).toBe(0);vi.useRealTimers()});it('pauses without renderer state',()=>{vi.useFakeTimers();const p=new PlaybackController();p.start(order);vi.advanceTimersByTime(10000);p.pause();vi.advanceTimersByTime(20000);expect(p.snapshot().remainingSeconds).toBe(50);p.resume();vi.useRealTimers()})});
