@@ -4,5 +4,5 @@ export class Store { private constructor(private readonly db:Database,private re
   list():Order[]{const result=this.db.exec('SELECT * FROM orders ORDER BY createdAt ASC')[0];if(!result)return [];return result.values.map((v:any[])=>Object.fromEntries(result.columns.map((c,i)=>[c,v[i]])) as Order).map(o=>({...o,test:Boolean(o.test)}));}
   savePricing(pricing:Pricing){const s=this.db.prepare('INSERT INTO settings(key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value');s.run(['pricing',JSON.stringify(pricing)]);s.free();this.flush();}
   loadPricing(fallback:Pricing):Pricing{const result=this.db.exec("SELECT value FROM settings WHERE key='pricing'")[0];if(!result?.values[0]?.[0])return {...fallback};try{return {...fallback,...JSON.parse(String(result.values[0][0]))};}catch{return {...fallback};}}
-  backup(path:string){writeFileSync(path,Buffer.from(this.db.export()));} private flush(){writeFileSync(this.path,Buffer.from(this.db.export()));}
+  backup(path:string){writeFileSync(path,Buffer.from(this.db.export()));} exportBytes(){return this.db.export();} private flush(){writeFileSync(this.path,Buffer.from(this.db.export()));}
 }
