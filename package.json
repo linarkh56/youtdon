@@ -4,8 +4,41 @@
   "description": "YouTube Donation Player for streamers",
   "main": "dist/main/main.js",
   "type": "module",
-  "scripts": {"build":"tsc -p tsconfig.json","start":"npm run build && electron .","test":"vitest run","typecheck":"tsc --noEmit","dist":"npm run build && electron-builder --win --dir"},
-  "dependencies": {"express":"^4.21.2","zod":"^3.24.1"},
-  "devDependencies": {"@types/express":"^5.0.0","@types/node":"^22.10.5","electron":"^33.2.1","electron-builder":"^25.1.8","typescript":"^5.7.2","vitest":"^2.1.8"},
-  "build":{"appId":"com.youtdon.desktop","productName":"YouTube Donation Player","directories":{"output":"release"},"files":["dist/**/*","src/renderer/**/*","package.json"],"win":{"target":"nsis"}}
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "npm run build && electron .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "dist": "npm run build && electron-builder --win --dir"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "sql.js": "^1.14.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
+    "@types/sql.js": "^1.4.11",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "build": {
+    "appId": "com.youtdon.desktop",
+    "productName": "YouTube Donation Player",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "src/renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  }
 }
