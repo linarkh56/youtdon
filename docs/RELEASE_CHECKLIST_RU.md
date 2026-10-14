@@ -4,6 +4,7 @@
 - [ ] `npm run typecheck`.
 - [ ] `npm test`.
 - [ ] `npm audit --omit=dev --audit-level=high`.
+- [ ] Убедиться, что Windows CI выполняет typecheck, lint, test, production audit и сохраняет installer artifact.
 - [ ] `npm run dist:installer` на `windows-latest`.
 - [ ] Установка и удаление на чистой Windows 10/11.
 - [ ] Подписать бинарники сертификатом выпуска или явно выпустить неподписанную тестовую сборку.
