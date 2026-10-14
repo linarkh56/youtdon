@@ -8,4 +8,4 @@
 
 Поддерживаются только `youtube.com/watch?v=...`, `youtube.com/shorts/...` и `youtu.be/...`. Прямые эфиры, плейлисты, произвольные хосты и скачивание видео не поддерживаются.
 
-Документы: [FAQ](docs/FAQ_RU.md), [устранение неполадок](docs/TROUBLESHOOTING_RU.md), [release checklist](docs/RELEASE_CHECKLIST_RU.md), [политика обработки данных](docs/DATA_POLICY_RU.md), [зависимости](docs/DEPENDENCIES_RU.md), [changelog](CHANGELOG.md).
+Документы: [FAQ](docs/FAQ_RU.md), [устранение неполадок](docs/TROUBLESHOOTING_RU.md), [release checklist](docs/RELEASE_CHECKLIST_RU.md), [политика обработки данных](docs/DATA_POLICY_RU.md), [зависимости](docs/DEPENDENCIES_RU.md), [DonationAlerts](docs/INTEGRATION_DONATIONALERTS_RU.md), [DonatePay](docs/INTEGRATION_DONATEPAY_RU.md), [отчёт тестов](docs/TEST_REPORT_RU.md), [changelog](CHANGELOG.md).
