@@ -23,6 +23,7 @@
 - полный реальный YouTube IFrame lifecycle, OBS Browser Source и ручное переподключение OBS;
 - реальные DonationAlerts/DonatePay события, потому что credentials отсутствуют;
 - подпись installer сертификатом.
+- повторный isolated install smoke именно для installer hash `79DD2B44E8514879F2E6E201A5CBCA153E6DCA6B7F483DA9AA1F886F57F49AFD`: запуск процесса в этой среде заблокирован локальной политикой; предыдущий smoke для того же packaging pipeline зафиксирован выше.
 
 Полный `npm audit` содержит 8 moderate dev-toolchain findings через electron-builder; production-зависимости проходят high-level audit.
 
