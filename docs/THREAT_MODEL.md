@@ -2,4 +2,4 @@
 
 Повторная доставка блокируется уникальностью SQLite; URL ограничен HTTPS и точным allowlist hostname; renderer sandboxed с `contextIsolation` и `nodeIntegration:false`; сервер слушает только `127.0.0.1`; окна Electron принимают навигацию только к exact origin этого loopback-сервера; внешние credentials не принимаются renderer.
 
-Управляющий токен генерируется main и передаётся только через минимальный preload IPC API; URL и логи его не содержат. Overlay остаётся read-only и loopback-only: запрос `/overlay.html` выдаёт HttpOnly SameSite cookie с ограниченным сроком, а WebSocket принимает соединения только с этой сессией. Cookie не находится в URL и не даёт доступа к управляющим API.
+Управляющий токен генерируется main и передаётся только через минимальный preload IPC API; URL и логи его не содержат. Видео показывается в отдельном sandboxed окне Electron с точным loopback-origin; OBS получает изображение через обычный захват окна и не получает управляющий токен.

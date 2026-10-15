@@ -2,7 +2,7 @@
 
 - `electron` — desktop runtime.
 - `express` — локальный HTTP API.
-- `ws` — локальный WebSocket overlay.
+- `ws` — оставшаяся локальная транспортная зависимость; основной способ вывода видео для OBS — захват отдельного окна приложения.
 - `sql.js` — SQLite-compatible WASM persistence без native toolchain.
 - `vitest` — unit и integration tests.
 - `electron-builder` — Windows unpacked и NSIS packaging.
